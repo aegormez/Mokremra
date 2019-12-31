@@ -1,0 +1,48 @@
+%This code is free and does not contain any copyrights. ıt works in Octave. I just keep it in here to reach from anywhere.
+
+fid=fopen('drawFigure.txt','r');
+fid2=fopen("drawFigure2.txt",'wt');
+codeLine=fgetl(fid);
+i=1;
+convertedLines=[];
+while(codeLine ~= -1)
+  legAv=strfind(codeLine,'legend');
+  if (~isempty(legAv))
+    
+    loc3=strfind(codeLine,'3');
+    loc2=strfind(codeLine,'2');
+    
+    if(~isempty(loc3))
+    loc=loc3;
+    elseif(~isempty(loc2))
+    loc=loc2;
+    end
+  
+    if(codeLine(loc+1)==')')
+      if(~isempty(loc3))
+      codeLine(loc)=[];
+      str1=codeLine(1:loc-1);
+      str2=codeLine(loc:length(codeLine));
+      mystr="'location','northeast'";
+      codeLine=strcat(str1,mystr,str2);
+      elseif(~isempty(loc2))
+      codeLine(loc)=[];
+      str1=codeLine(1:loc-1);
+      str2=codeLine(loc:length(codeLine));
+      mystr="'location','southwest'";
+      codeLine=strcat(str1,mystr,str2);
+      end
+      convertedLines=[convertedLines i];
+    endif
+    
+  endif
+    
+  fprintf(fid2,"%s \n",codeLine);
+    
+  i++;
+  codeLine=fgetl(fid);
+  
+endwhile
+ fclose(fid2);
+ fclose(fid);
+ convertedLines
