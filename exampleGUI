@@ -1,0 +1,64 @@
+%This code is free and ı keep it in here to reach from anywhere. It has a GUI with two functions. 1st fcn checks strings from
+%two texts and gives an output about their equality to another strings. 2nd fcn moves the widgets whenever mouse hovers over them.
+
+function myGUI()
+  h.Mainfrm=figure("position",[200 200 200 200],'windowbuttonmotionfcn',@motionFcn);
+  
+  
+  h.edit1=uicontrol("style","edit",
+  "position",[25 60 80 20],
+  'string','enter 2nd');
+  h.edit2=uicontrol("style","edit",
+  "position",[25 80 80 20],
+  'string','enter 1st');
+  
+  h.text=uicontrol("string","no result yet",
+  "style","text","position",[20 10 80 20]);
+  
+  h.button=uicontrol(h.Mainfrm,"string","Giris","style","push",
+  "position",[30 30 40 20],"Callback",@myCallback);
+  
+  guidata(h.Mainfrm,h)
+  
+  str="legend('sin','cos',3);"
+  k=strfind(str,'3');
+  if(str(k+1)==')')
+  str(k)=[];
+  str1=str(1:k-1)
+  str2=str(k:length(str))
+  mystr="'location','northeast'";
+  str=strcat(str1,mystr,str2)
+  endif
+  endfunction
+function myCallback(hObject,eventdata)
+  h=guidata(hObject)
+  PWD=get(h.edit1,'string')
+  ID=get(h.edit2,'string')
+  if isequal(ID,'enes')&isequal(PWD,'gormez')
+    set(h.text,'string','başarılı');
+  else
+    set(h.text,'string','başarısız');
+  end
+endfunction
+function motionFcn(hObject,eventdata)
+  h=guidata(hObject);
+  figurePos=get(h.Mainfrm,'Position');
+  mousePos=get(h.Mainfrm,'CurrentPoint');
+  mouseX=mousePos(1)
+  mouseY=mousePos(2)
+  hChildren=get(h.Mainfrm,'children');
+  
+  for k=1:length(hChildren)
+    newLoc=rand()*100;
+    hUiControl=hChildren(k);
+    uiControlPos=get(hUiControl,'Position');
+    uiControlXL=uiControlPos(1)*figurePos(3);
+    uiControlYL=uiControlPos(2)*figurePos(4);
+    uiControlXU=(uiControlPos(1)+uiControlPos(3))*figurePos(3);
+    uiControlYU=(uiControlPos(2)+uiControlPos(4))*figurePos(4);
+    if mouseX>=uiControlPos(1)&&mouseX<=(uiControlPos(1)+uiControlPos(3))...
+      &&mouseY>=uiControlPos(2)&&mouseY<=(uiControlPos(2)+uiControlPos(4))
+      set(hUiControl,'Position',[newLoc newLoc uiControlPos(3) uiControlPos(4)]);
+    endif
+  endfor
+endfunction
