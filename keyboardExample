@@ -1,0 +1,20 @@
+%This code fragment is free and records keys pushed from keyboard then writes them to a text file.
+
+
+function keyboardExample()
+  h.Mainfrm=figure("position",[200 200 200 200]);
+  set(h.Mainfrm,"keypressfcn",@keypressCallback);
+  
+
+
+endfunction
+function keypressCallback(hObject,eventdata) 
+  data=eventdata;
+  mykey=data.Character;
+  if mykey=='space'
+    mykey=' ';
+  endif
+  fid=fopen("mytext.txt",'a+');
+  fprintf(fid,"%s" ,mykey)
+  fclose(fid);
+endfunction
