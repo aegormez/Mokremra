@@ -1,0 +1,110 @@
+function GUI()
+  h.fig=figure('position',[200 100 600 500]);
+  popUpString={'Select All';'Select from list'};
+  h.popUpMenu=uicontrol('string',popUpString,'position',[20 440 150 25],'style','popupmenu','callback',@GrafikGruplariSecimiPopupMenu_Callback);
+  h.checkBox1=uicontrol('style','checkbox','string','Graph Group 1','position',[20 400 120 15]);
+  h.checkBox2=uicontrol('style','checkbox','string','Graph Group 2','position',[20 385 120 15]);
+  h.checkBox3=uicontrol('style','checkbox','string','Graph Group 3','position',[20 370 120 15]); 
+  h.checkBox4=uicontrol('style','checkbox','string','Graph Group 4','position',[20 355 120 15]); 
+  h.checkBox5=uicontrol('style','checkbox','string','Graph Group 5','position',[20 340 120 15]); 
+  h.checkBox6=uicontrol('style','checkbox','string','Graph Group 6','position',[20 325 120 15]); 
+  h.checkBox7=uicontrol('style','checkbox','string','Graph Group 7','position',[20 310 120 15]); 
+  h.checkBox8=uicontrol('style','checkbox','string','Graph Group 8','position',[20 295 120 15]); 
+  h.checkBox9=uicontrol('style','checkbox','string','Graph Group 9','position',[20 280 120 15]);
+  h.checkBox10=uicontrol('style','checkbox','string','Graph Group 10','position',[20 265 120 15]); 
+  h.checkBox11=uicontrol('style','checkbox','string','Graph Group 11','position',[150 400 120 15]); 
+  h.checkBox12=uicontrol('style','checkbox','string','Graph Group 12','position',[150 385 120 15]); 
+  h.checkBox13=uicontrol('style','checkbox','string','Graph Group 13','position',[150 370 120 15]); 
+  h.checkBox14=uicontrol('style','checkbox','string','Graph Group 14','position',[150 355 120 15]); 
+  h.checkBox15=uicontrol('style','checkbox','string','Graph Group 15','position',[150 340 120 15]); 
+  h.checkBox16=uicontrol('style','checkbox','string','Graph Group 16','position',[150 325 120 15]); 
+  h.checkBox17=uicontrol('style','checkbox','string','Graph Group 17','position',[150 310 120 15]);
+ 
+  h.excelButton=uicontrol('string','USE Excel File','position',[40 130 100 20],'callback',@CreateFromExcelFile_Callback);
+  h.csvButton=uicontrol('string','Use Csv Files','position',[200 130 100 20]); 
+
+  guidata(h.fig,h);
+  global essmOutputTextHandle;
+  global essmOutputTextSliderHandle;
+  global essmSelectedGraph;
+  clc;
+  %essmOutputTextHandle=handles.ConsoleOutputText;
+  %essmOutputTextSliderHandle=handles.ConsoleOutputTextSlider;
+  %essmAnalizeInit();
+  uiGrafikGrupPanelChilds=findobj('style','checkbox');
+  for i=1:size(uiGrafikGrupPanelChilds,1)
+    set(uiGrafikGrupPanelChilds(i),'value',0);
+    essmSelectedGraph(i)=false
+  end
+  
+  
+
+function GrafikGruplariSecimiPopupMenu_Callback(hObject,eventdata)
+  global essmSelectedGraph;
+  val=get(hObject,'value')
+  string_list=get(hObject,'string')
+  selected_String=string_list(val)
+  switch selected_String{1}
+    case 'Select from list'
+      'case 1 girildi'
+      uiGrafikGrupPanelChilds=findobj('style','checkbox');
+      for i=1:size(uiGrafikGrupPanelChilds,1)
+        set(uiGrafikGrupPanelChilds(i),'Enable','on');
+        set(uiGrafikGrupPanelChilds(i),'value',0);
+        essmSelectedGraph(i)=false;
+      end
+  case 'Select All'
+    'case girildi'
+      uiGrafikGrupPanelChilds=findobj('style','checkbox');
+      for i=1:size(uiGrafikGrupPanelChilds,1)
+        set(uiGrafikGrupPanelChilds(i),'Enable','off');
+        set(uiGrafikGrupPanelChilds(i),'value',1);
+        essmSelectedGraph(i)=true;
+      end
+   end
+      
+function CreateFromExcelFile_Callback(hObject,eventdata)
+  global essmSelectedGraph;
+  global essmIsLoadedFileAvail;
+  global Path_Dir;
+  global generateGraphAutomatically;
+  
+  
+  specialFileName='GenerateAuto.txt';
+  generateGraphAutomatically=false;
+  essmConsoleOutput('',false);
+if(isempty(find(essmSelectedGraph,1))==true)
+  esmConsoleOutput('None of the Graph groups items is selected!',false);
+  essmConsoleOutput('Please select one group!',false);
+  return;
+end
+
+[filename,Path_Dir]=uigetfile({'*.xls';'*.txt'},'Please select an ESSM analysis Excel document');
+if (Path_Dir==0)
+  essmConsoleOutput('Selection is not made!',false);
+  return;
+end
+if strcmp(filename,specialFileName)==true
+  generateGraphAutomatically(filename,Path_Dir);
+end
+
+
+
+function essmConsoleOutput(stringVal,booleanVal)
+  
+ stringVal 
+
+%{
+function mouseMotion(hObject,eventdata)
+  h=guidata(hObject);
+  rand1=rand()*200;
+  rand2=rand()*200;
+  pushPos=get(h.push,'position');
+  mousePos=get(h.fig,'CurrentPoint');
+  mouseX=mousePos(1);mouseY=mousePos(2);
+  if (mouseX>=pushPos(1)&&mouseX<=(pushPos(1)+pushPos(3))&&...
+    mouseY>=pushPos(2)&&mouseY<=(pushPos(2)+pushPos(4)))
+  set(h.push,'Position',[rand1 rand2 80 20]);
+  endif
+endfunction
+%}
