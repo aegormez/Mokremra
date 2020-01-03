@@ -1,6 +1,11 @@
 function GUI()
   h.fig=figure('position',[200 100 600 500]);
   popUpString={'Select All';'Select from list'};
+  h.grafikGrupPanel=uipanel('position',[.02 .5 .7 .37],'title','Graph List');
+  h.butonPanel=uipanel('position',[.02 .25 .35 .25],'title','Graph Generation');
+  h.butonPanelTextBir=uicontrol('style','text','string','Do you want to generate from CSV files ?','position',[25 205 180 30],'fontsize',7.5);
+  h.sonucPanel=uipanel('position',[.38 .008 .35 .48]);
+  h.sonucPanelSlider=uicontrol('style','slider','position',[420 10 15 235]);
   h.popUpMenu=uicontrol('string',popUpString,'position',[20 440 150 25],'style','popupmenu','callback',@GrafikGruplariSecimiPopupMenu_Callback);
   h.checkBox1=uicontrol('style','checkbox','string','Graph Group 1','position',[20 400 120 15]);
   h.checkBox2=uicontrol('style','checkbox','string','Graph Group 2','position',[20 385 120 15]);
@@ -12,16 +17,19 @@ function GUI()
   h.checkBox8=uicontrol('style','checkbox','string','Graph Group 8','position',[20 295 120 15]); 
   h.checkBox9=uicontrol('style','checkbox','string','Graph Group 9','position',[20 280 120 15]);
   h.checkBox10=uicontrol('style','checkbox','string','Graph Group 10','position',[20 265 120 15]); 
-  h.checkBox11=uicontrol('style','checkbox','string','Graph Group 11','position',[150 400 120 15]); 
-  h.checkBox12=uicontrol('style','checkbox','string','Graph Group 12','position',[150 385 120 15]); 
-  h.checkBox13=uicontrol('style','checkbox','string','Graph Group 13','position',[150 370 120 15]); 
-  h.checkBox14=uicontrol('style','checkbox','string','Graph Group 14','position',[150 355 120 15]); 
-  h.checkBox15=uicontrol('style','checkbox','string','Graph Group 15','position',[150 340 120 15]); 
-  h.checkBox16=uicontrol('style','checkbox','string','Graph Group 16','position',[150 325 120 15]); 
-  h.checkBox17=uicontrol('style','checkbox','string','Graph Group 17','position',[150 310 120 15]);
+  h.checkBox11=uicontrol('style','checkbox','string','Graph Group 11','position',[250 400 120 15]); 
+  h.checkBox12=uicontrol('style','checkbox','string','Graph Group 12','position',[250 385 120 15]); 
+  h.checkBox13=uicontrol('style','checkbox','string','Graph Group 13','position',[250 370 120 15]); 
+  h.checkBox14=uicontrol('style','checkbox','string','Graph Group 14','position',[250 355 120 15]); 
+  h.checkBox15=uicontrol('style','checkbox','string','Graph Group 15','position',[250 340 120 15]); 
+  h.checkBox16=uicontrol('style','checkbox','string','Graph Group 16','position',[250 325 120 15]); 
+  h.checkBox17=uicontrol('style','checkbox','string','Graph Group 17','position',[250 310 120 15]); 
+  h.checkBox18=uicontrol('style','checkbox','string','Graph Group 18','position',[250 295 120 15]); 
+  h.checkBox19=uicontrol('style','checkbox','string','Graph Group 19','position',[250 280 120 15]); 
+  h.checkBox20=uicontrol('style','checkbox','string','Graph Group 20','position',[250 265 120 15]);
  
-  h.excelButton=uicontrol('string','USE Excel File','position',[40 130 100 20],'callback',@CreateFromExcelFile_Callback);
-  h.csvButton=uicontrol('string','Use Csv Files','position',[200 130 100 20]); 
+  h.excelButton=uicontrol('string','USE Excel File','position',[27 130 85 20],'callback',@CreateFromExcelFile_Callback);
+  h.csvButton=uicontrol('string','Use Csv Files','position',[120 130 80 20]); 
 
   guidata(h.fig,h);
   global essmOutputTextHandle;
@@ -46,7 +54,7 @@ function GrafikGruplariSecimiPopupMenu_Callback(hObject,eventdata)
   selected_String=string_list(val)
   switch selected_String{1}
     case 'Select from list'
-      'case 1 girildi'
+      
       uiGrafikGrupPanelChilds=findobj('style','checkbox');
       for i=1:size(uiGrafikGrupPanelChilds,1)
         set(uiGrafikGrupPanelChilds(i),'Enable','on');
@@ -54,7 +62,7 @@ function GrafikGruplariSecimiPopupMenu_Callback(hObject,eventdata)
         essmSelectedGraph(i)=false;
       end
   case 'Select All'
-    'case girildi'
+    
       uiGrafikGrupPanelChilds=findobj('style','checkbox');
       for i=1:size(uiGrafikGrupPanelChilds,1)
         set(uiGrafikGrupPanelChilds(i),'Enable','off');
@@ -74,7 +82,7 @@ function CreateFromExcelFile_Callback(hObject,eventdata)
   generateGraphAutomatically=false;
   essmConsoleOutput('',false);
 if(isempty(find(essmSelectedGraph,1))==true)
-  esmConsoleOutput('None of the Graph groups items is selected!',false);
+  essmConsoleOutput('None of the Graph groups items is selected!',false);
   essmConsoleOutput('Please select one group!',false);
   return;
 end
@@ -93,18 +101,3 @@ end
 function essmConsoleOutput(stringVal,booleanVal)
   
  stringVal 
-
-%{
-function mouseMotion(hObject,eventdata)
-  h=guidata(hObject);
-  rand1=rand()*200;
-  rand2=rand()*200;
-  pushPos=get(h.push,'position');
-  mousePos=get(h.fig,'CurrentPoint');
-  mouseX=mousePos(1);mouseY=mousePos(2);
-  if (mouseX>=pushPos(1)&&mouseX<=(pushPos(1)+pushPos(3))&&...
-    mouseY>=pushPos(2)&&mouseY<=(pushPos(2)+pushPos(4)))
-  set(h.push,'Position',[rand1 rand2 80 20]);
-  endif
-endfunction
-%}
