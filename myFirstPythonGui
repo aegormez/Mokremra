@@ -1,0 +1,11 @@
+from tkinter import *
+
+win=Tk()
+win.title("My First GUI")
+win.configure(background="green")
+
+text= Label(win, text="Enter the word you would like a definition for", font="none 12 bold").grid(row=1,column=0,sticky=W)
+
+editBox=Text (win, font="none 12 bold",width=20,height=3).grid(row=2,column=0,sticky=W)
+
+win.mainloop()
