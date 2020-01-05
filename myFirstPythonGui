@@ -9,3 +9,4 @@ text= Label(win, text="Enter the word you would like a definition for", font="no
 editBox=Text (win, font="none 12 bold",width=20,height=3).grid(row=2,column=0,sticky=W)
 
 win.mainloop()
+#https://www.tutorialspoint.com/python/python_gui_programming.htm
