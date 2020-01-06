@@ -3,12 +3,16 @@ from tkinter import *
 #Resulting output can be seen below link
 #https://www.imageupload.net/image/GlJ7h
 
+#USE EXCEL FILE BUTTON CALLBACK
+#-------------------------------------------------------------
+def createFromExcel():
+   file_path = filedialog.askopenfilename()
+   
 #WINDOW CREATION
 #-------------------------------------------------------------
 win=Tk()
 win.title("My First GUI")
 win.configure(background="white")
-
 
 
 #DROP DOWN MENU
@@ -64,7 +68,7 @@ buttonFrame.pack(side= LEFT)
 #--------------------------------------------------------------
 questionText=Label(buttonFrame,width=40,text="Which method do you want to use?")
 questionText.pack()
-excelButton=Button(buttonFrame,width=20,height=1,text='Use Excel File')
+excelButton=Button(buttonFrame,width=20,height=1,text='Use Excel File',command=createFromExcel)
 excelButton.pack(side=LEFT)
 csvButton=Button(buttonFrame,width=20,height=1,text='Use CSV File')
 csvButton.pack(side=LEFT)
@@ -76,7 +80,6 @@ outputFrame=Frame(bottomFrame,width=100,height=80,bg="gray")
 outputFrame.pack()
 outputTitleLabel=Label(outputFrame,text="This area is to give output about program")
 outputTitleLabel.pack()
-
 
 win.mainloop()
 #https://www.tutorialspoint.com/python/python_gui_programming.htm
