@@ -16,7 +16,7 @@ win.configure(background="white")
 tkvar = StringVar(win)
 tkvar.set('Select All') # set the default option
 popupMenu = OptionMenu(win, tkvar,"Select All","Select From List")
-popupMenu.configure(width=49)#optionmenu is not a traditional widget so we use configure method
+popupMenu.configure(width=50)#optionmenu is not a traditional widget so we use configure method
 popupMenu.pack()
 
 #-------------------------------------------------------------
@@ -47,13 +47,17 @@ checkBox9=Checkbutton(groupFrame,activeforeground="green",width=20,height=1,text
 checkBox9.grid(row=9,column=0, sticky=W)
 checkBox11=Checkbutton(groupFrame,activeforeground="green",width=20,height=1,text="Graph Group 11")
 checkBox11.grid(row=1,column=1, sticky=W)
-
+#--------------------------------------------------------------
+#BOTTOM FRAME
+#--------------------------------------------------------------
+bottomFrame=Frame(win)
+bottomFrame.pack()
 
 #--------------------------------------------------------------
 #BUTTON FRAME
 #--------------------------------------------------------------
-buttonFrame=Frame(win,height=80,width=100,bg="gray")
-buttonFrame.pack()
+buttonFrame=Frame(bottomFrame,height=80,width=100,bg="gray")
+buttonFrame.pack(side= LEFT)
 
 
 #BUTTON ITEMS
@@ -64,6 +68,15 @@ excelButton=Button(buttonFrame,width=20,height=1,text='Use Excel File')
 excelButton.pack(side=LEFT)
 csvButton=Button(buttonFrame,width=20,height=1,text='Use CSV File')
 csvButton.pack(side=LEFT)
+
+#--------------------------------------------------------------
+#OUTPUT FRAME
+#--------------------------------------------------------------
+outputFrame=Frame(bottomFrame,width=100,height=80,bg="gray")
+outputFrame.pack()
+outputTitleLabel=Label(outputFrame,text="This area is to give output about program")
+outputTitleLabel.pack()
+
 
 win.mainloop()
 #https://www.tutorialspoint.com/python/python_gui_programming.htm
