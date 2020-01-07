@@ -248,3 +248,59 @@ print(next(myiter))
 print(next(myiter))
 print(next(myiter))
 print(next(myiter))
+
+Python Dates
+Import the datetime module and display the current date:
+
+import datetime
+
+x = datetime.datetime.now()
+print(x)
+
+Return the year and name of weekday:
+
+import datetime
+x = datetime.datetime.now()
+print(x.year)
+print(x.strftime("%A"))
+The strftime() Method
+The datetime object has a method for formatting date objects into readable strings.The method is called strftime(), 
+and takes one parameter, format, to specify the format of the returned string. Display the name of the month:
+
+import datetime
+x = datetime.datetime(2018, 6, 1)
+print(x.strftime("%B"))
+
+%A	Weekday, full version	    Wednesday
+%B	Month name, full version	December
+%Y	Year, full version	      2018
+%H	Hour 00-23	              17	
+%I	Hour 00-12	              05	
+%p	AM/PM	                    PM	
+%M	Minute 00-59	            41	
+%S	Second 00-59	            08
+
+RegEx in Python
+When you have imported the re module, you can start using regular expressions:
+
+Search the string to see if it starts with "The" and ends with "Spain":
+
+import re
+txt = "The rain in Spain"
+x = re.search("^The.*Spain$", txt)
+
+findall	Returns a list containing all matches
+search	Returns a Match object if there is a match anywhere in the string
+split	  Returns a list where the string has been split at each match
+sub	    Replaces one or many matches with a string
+
+Character	Description	              Example	
+[]	      A set of characters	      "[a-m]"	
+\	        Signals a specialsequence "\d"	
+.	        Any character           	"he..o"	
+^	        Starts with	              "^hello"	
+$	        Ends with	                "world$"	
+*	        Zero or more occurrences	"aix*"	
++	        One or more occurrences	  "aix+"	
+{}	      Specifiednumberof occur	  "al{2}"	
+|	        Either or	                "falls|stays"
