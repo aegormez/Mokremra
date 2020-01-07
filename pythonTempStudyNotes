@@ -304,3 +304,14 @@ $	        Ends with	                "world$"
 +	        One or more occurrences	  "aix+"	
 {}	      Specifiednumberof occur	  "al{2}"	
 |	        Either or	                "falls|stays"
+
+User Input
+username = input("Enter username:")
+print("Username is: " + username)
+
+String format()
+Add a placeholder where you want to display the price:
+
+price = 49
+txt = "The price is {} dollars"
+print(txt.format(price))
