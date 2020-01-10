@@ -83,3 +83,85 @@ outputTitleLabel.pack()
 
 win.mainloop()
 #https://www.tutorialspoint.com/python/python_gui_programming.htm
+
+
+
+
+
+###############################################################################
+CREATING GUI USING PLACE() LAYOUT
+###############################################################################
+from tkinter import *
+from tkinter import filedialog
+
+
+#USE EXCEL FILE BUTTON CALLBACK
+#-------------------------------------------------------------
+def createFromExcel():
+   file_path = filedialog.askopenfilename()
+   
+#WINDOW CREATION
+#-------------------------------------------------------------
+win=Tk()
+win.title("My First GUI")
+win.configure(background="white")
+win.geometry("400x500+30+30")
+
+#DROP DOWN MENU
+#-------------------------------------------------------------
+tkvar = StringVar(win)
+tkvar.set('Select All') # set the default option
+popupMenu = OptionMenu(win, tkvar,"Select All","Select From List")
+popupMenu.configure(width=50)#optionmenu is not a traditional widget so we use configure method
+popupMenu.place(x=20,y=40)
+#-------------------------------------------------------------
+# GRAPH GROUPS FRAME
+#-------------------------------------------------------------
+groupFrame=Frame(win, height=200,width=400,bg="cyan")
+groupFrame.place(x=20,y=70)
+
+checkBox1=Checkbutton(groupFrame,activeforeground="green",width=20,height=1,text="Graph Group 1")
+checkBox1.grid(row=1,column=0, sticky=W)
+checkBox2=Checkbutton(groupFrame,activeforeground="green",width=20,height=1,text="Graph Group 2")
+checkBox2.grid(row=2,column=0, sticky=W)
+checkBox3=Checkbutton(groupFrame,activeforeground="green",width=20,height=1,text="Graph Group 3")
+checkBox3.grid(row=3,column=0, sticky=W)
+checkBox4=Checkbutton(groupFrame,activeforeground="green",width=20,height=1,text="Graph Group 4")
+checkBox4.grid(row=4,column=0, sticky=W)
+checkBox5=Checkbutton(groupFrame,activeforeground="green",width=20,height=1,text="Graph Group 5")
+checkBox5.grid(row=5,column=0, sticky=W)
+checkBox6=Checkbutton(groupFrame,activeforeground="green",width=20,height=1,text="Graph Group 6")
+checkBox6.grid(row=6,column=0, sticky=W)
+checkBox7=Checkbutton(groupFrame,activeforeground="green",width=20,height=1,text="Graph Group 7")
+checkBox7.grid(row=7,column=0, sticky=W)
+checkBox8=Checkbutton(groupFrame,activeforeground="green",width=20,height=1,text="Graph Group 8")
+checkBox8.grid(row=8,column=0, sticky=W)
+checkBox9=Checkbutton(groupFrame,activeforeground="green",width=20,height=1,text="Graph Group 9")
+checkBox9.grid(row=9,column=0, sticky=W)
+checkBox11=Checkbutton(groupFrame,activeforeground="green",height=1,text="Graph Group 11")
+checkBox11.grid(row=1,column=1, sticky=W)
+
+#--------------------------------------------------------------
+#BUTTON FRAME
+#--------------------------------------------------------------
+buttonFrame=Frame(win,height=80,width=200)
+buttonFrame.place(x=20,y=300)
+#BUTTON ITEMS
+#--------------------------------------------------------------
+questionText=Label(win,text="Which method do you want to use?")
+questionText.place(x=20,y=305)
+excelButton=Button(win,text='Use Excel File',command=createFromExcel)
+excelButton.place(x=25,y=330)
+csvButton=Button(win,text='Use CSV File')
+csvButton.place(x=120,y=330)
+
+#--------------------------------------------------------------
+#OUTPUT FRAME
+#--------------------------------------------------------------
+outputFrame=Frame(win,width=150,height=80,bg="gray")
+outputFrame.place(x=220,y=300)
+outputTitleLabel=Label(win,text="Output Frame")
+outputTitleLabel.place(x=255,y=300)
+
+
+win.mainloop()
