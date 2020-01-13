@@ -452,3 +452,39 @@ myline = numpy.linspace(0, 6, 100)
 plt.scatter(train_x, train_y)
 plt.plot(myline, mymodel(myline))
 plt.show()
+
+Making GUI with Python - This part only contains tips about GUI , not the whole topic itself
+
+Set focus to entry widget
+That’s super easy, all we need to do is to call focus function like this:
+txt.focus()
+And when you run your code, you will notice that the entry widget has the focus so you can write your text right away.
+
+Disable entry widget
+To disable entry widget, you can set the state property to disabled:
+txt = Entry(window,width=10, state='disabled')
+
+Add a combobox widget
+To add a combobox widget, you can use the Combobox class from ttk library like this:
+
+from tkinter.ttk import * 
+combo = Combobox(window)
+combo['values']= (1, 2, 3, 4, 5, "Text")
+combo.current(1) #set the selected item
+
+To get the select item, you can use the get function like this:
+combo.get()
+
+Adding Checkbox
+chk_state = BooleanVar()
+chk_state.set(True) #set check state
+chk = Checkbutton(window, text='Choose', var=chk_state)
+
+Radio Button
+selected = IntVar()
+rad1 = Radiobutton(window,text='First', value=1, variable=selected)
+rad2 = Radiobutton(window,text='Second', value=2, variable=selected)
+rad3 = Radiobutton(window,text='Third', value=3, variable=selected)
+def clicked():
+   print(selected.get())
+btn = Button(window, text="Click Me", command=clicked)
