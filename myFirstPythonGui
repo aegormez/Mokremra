@@ -93,7 +93,7 @@ CREATING GUI USING PLACE() LAYOUT
 ###############################################################################
 from tkinter import *
 from tkinter import filedialog
-
+from tkinter.scrolledtext import ScrolledText
 
 #USE EXCEL FILE BUTTON CALLBACK
 #-------------------------------------------------------------
@@ -158,10 +158,8 @@ csvButton.place(x=120,y=330)
 #--------------------------------------------------------------
 #OUTPUT FRAME
 #--------------------------------------------------------------
-outputFrame=Frame(win,width=150,height=80,bg="gray")
-outputFrame.place(x=220,y=300)
-outputTitleLabel=Label(win,text="Output Frame")
-outputTitleLabel.place(x=255,y=300)
+outputText=ScrolledText(win,width=20,height=10)
+outputText.place(x=220,y=300)
 
 
 win.mainloop()
