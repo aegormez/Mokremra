@@ -454,9 +454,9 @@ myline = numpy.linspace(0, 6, 100)
 plt.scatter(train_x, train_y)
 plt.plot(myline, mymodel(myline))
 plt.show()
-
+########################################################################################################
 Making GUI with Python - This part only contains tips about GUI , not the whole topic itself
-
+########################################################################################################
 Set focus to entry widget
 That’s super easy, all we need to do is to call focus function like this:
 txt.focus()
