@@ -1,3 +1,5 @@
+#https://likegeeks.com/python-gui-examples-tkinter-tutorial/
+
 Python Dictionaries
 Create and print a dictionary:
 
@@ -488,3 +490,52 @@ rad3 = Radiobutton(window,text='Third', value=3, variable=selected)
 def clicked():
    print(selected.get())
 btn = Button(window, text="Click Me", command=clicked)
+
+Add a ScrolledText widget (Tkinter textarea)
+
+from tkinter.scrolledtext import ScrolledText
+outputText=ScrolledText(win,width=20,height=10)
+outputText.place(x=220,y=300)
+
+Set scrolledtext content
+To set scrolledtext content, you can use the insert method like this:
+outputText.insert(INSERT,'You text goes here')
+
+Delete/Clear scrolledtext content
+To clear the contents of a scrolledtext widget, you can use delete method like this:
+outputText.delete(1.0,END)
+
+Create a MessageBox
+To show a message box using Tkinter, you can use messagebox library like this:
+
+from tkinter import messagebox
+messagebox.showinfo('Message title','Message content')
+
+Show warning and error messages
+You can show a warning message or error message the same way. The only thing that needs to be changed is the message function
+
+messagebox.showwarning('Message title', 'Message content')  #shows warning message
+messagebox.showerror('Message title', 'Message content')    #shows error message
+
+Show askquestion dialogs
+To show a yes no message box to the user, you can use one of the following messagebox functions:
+
+from tkinter import messagebox
+
+res = messagebox.askquestion('Message title','Message content')
+
+res = messagebox.askyesno('Message title','Message content')
+
+res = messagebox.askyesnocancel('Message title','Message content')
+
+res = messagebox.askokcancel('Message title','Message content')
+
+res = messagebox.askretrycancel('Message title','Message content')
+
+Add a Progressbar widget
+To create a progress bar, you can use the progressbar class like this:
+from tkinter.ttk import Progressbar
+bar = Progressbar(window, length=200)
+
+You can set the progress bar value like this:
+bar['value'] = 70
