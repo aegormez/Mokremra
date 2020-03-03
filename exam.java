@@ -1,4 +1,4 @@
-ublic static double eval(final String str) {
+public static double eval(final String str) {
     return new Object() {
         int pos = -1, ch;
 
